@@ -1,0 +1,35 @@
+
+export type TicketStatus = 'waiting' | 'calling' | 'serving' | 'completed' | 'no-show';
+
+export interface Category {
+  id: string;
+  name: string;
+  prefix: string;
+  color: string;
+}
+
+export interface Counter {
+  id: number;
+  name: string;
+  currentTicketId?: string;
+  status: 'idle' | 'busy' | 'away';
+}
+
+export interface Ticket {
+  id: string;
+  displayId: string;
+  categoryId: string;
+  status: TicketStatus;
+  createdAt: number;
+  calledAt?: number;
+  startedAt?: number;
+  completedAt?: number;
+  counterId?: number;
+}
+
+export interface AppState {
+  categories: Category[];
+  counters: Counter[];
+  tickets: Ticket[];
+  nextTicketNumber: Record<string, number>;
+}
